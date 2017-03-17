@@ -5,6 +5,9 @@
  */
 package tpgillot;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  *
  * @author santor-f16
@@ -13,6 +16,10 @@ public class BrasDeFer extends javax.swing.JFrame {
 
     private Joueur j1;
     private Joueur j2;
+    
+    private Timer timer;
+    
+    private final float loseVal = 1.5f;
     
     /**
      * Creates new form BrasDeFer
@@ -30,6 +37,23 @@ public class BrasDeFer extends javax.swing.JFrame {
         
         Name1.setText(j1.getNom());
         Name2.setText(j2.getNom());
+        
+        Time1.setText(""+j1.getTemps());
+        Time2.setText(""+j2.getTemps());
+        
+        timer = new Timer("boucle", true);
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if(brasdefer.getValue() > 50)
+                    j2.loseTime(loseVal * (brasdefer.getValue() / 50));
+                 if (brasdefer.getValue() < 50)
+                    j1.loseTime(loseVal * ((50-brasdefer.getValue()+brasdefer.getValue()) / 50));
+                
+                Time1.setText(""+j1.getTemps());
+                Time2.setText(""+j2.getTemps());
+            }
+        },  (long) 0.1, (long) 1.1);
     }
 
     /**
@@ -43,24 +67,60 @@ public class BrasDeFer extends javax.swing.JFrame {
 
         Name1 = new javax.swing.JLabel();
         Name2 = new javax.swing.JLabel();
+        Time1 = new javax.swing.JLabel();
+        Time2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        brasdefer = new javax.swing.JProgressBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bras de Fer");
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                formKeyTyped(evt);
+            }
+        });
 
         Name1.setText("jLabel1");
 
         Name2.setText("jLabel2");
+
+        Time1.setText("jLabel1");
+
+        Time2.setText("jLabel2");
+
+        jLabel1.setText("Temps");
+
+        jLabel2.setText("Temps");
+
+        brasdefer.setValue(50);
+        brasdefer.setStringPainted(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(Name1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 208, Short.MAX_VALUE)
-                .addComponent(Name2)
-                .addGap(74, 74, 74))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(Name1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(Time1)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Name2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(Time2)))
+                        .addGap(74, 74, 74))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(brasdefer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -69,12 +129,37 @@ public class BrasDeFer extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Name1)
                     .addComponent(Name2))
-                .addContainerGap(247, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Time1)
+                    .addComponent(Time2)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
+                .addComponent(brasdefer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(85, 85, 85))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyTyped
+      
+        final int power = 1;
+        
+        switch(evt.getKeyChar())
+      {
+          case 'x':
+              brasdefer.setValue(brasdefer.getValue()+power);
+              break;
+              
+          case 'm':
+               brasdefer.setValue(brasdefer.getValue()-power);
+              break;
+      }
+    }//GEN-LAST:event_formKeyTyped
+
+    
     /**
      * @param args the command line arguments
      */
@@ -113,5 +198,10 @@ public class BrasDeFer extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Name1;
     private javax.swing.JLabel Name2;
+    private javax.swing.JLabel Time1;
+    private javax.swing.JLabel Time2;
+    private javax.swing.JProgressBar brasdefer;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
