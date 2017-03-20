@@ -7,6 +7,7 @@ package tpgillot;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,6 +22,8 @@ public class BrasDeFer extends javax.swing.JFrame {
     
     private final float loseVal = 1.5f;
     
+    static public BrasDeFer bras;
+    
     /**
      * Creates new form BrasDeFer
      */
@@ -28,9 +31,11 @@ public class BrasDeFer extends javax.swing.JFrame {
         initComponents();
     }
     
-    public BrasDeFer(Joueur j1, Joueur j2)
+    public BrasDeFer(Joueur j1, Joueur j2, long speed)
     {
         initComponents();
+        
+        BrasDeFer.bras = this;
         
         this.j1 = j1;
         this.j2 = j2;
@@ -45,15 +50,37 @@ public class BrasDeFer extends javax.swing.JFrame {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
+
+                if (brasdefer.getValue() < 50)
+                    j1.loseTime(loseVal * ((100 - brasdefer.getValue()) / 50.0f));
                 if(brasdefer.getValue() > 50)
-                    j2.loseTime(loseVal * (brasdefer.getValue() / 50));
-                 if (brasdefer.getValue() < 50)
-                    j1.loseTime(loseVal * ((50-brasdefer.getValue()+brasdefer.getValue()) / 50));
+                    j2.loseTime(loseVal * (brasdefer.getValue() / 50.0f));
+  
+                if(j2.isDead())
+                {
+                    this.cancel();    
+                    j2.setTemps(0);
+
+                    Time2.setText(""+(int)j2.getTemps());
+                    
+                    JOptionPane.showMessageDialog(BrasDeFer.bras, j2.getNom()+" est mort", "Victoire de "+j1.getNom()+"!", JOptionPane.DEFAULT_OPTION );
+                    BrasDeFer.bras.dispose();
+                }
+                else if (j1.isDead())
+                {
+                    this.cancel();
+                    j1.setTemps(0);
+                    
+                    Time1.setText(""+(int)j1.getTemps());
+                    
+                    JOptionPane.showMessageDialog(BrasDeFer.bras, j1.getNom()+" est mort", "Victoire de "+j2.getNom()+"!", JOptionPane.DEFAULT_OPTION );            
+                    BrasDeFer.bras.dispose();
+                }
                 
-                Time1.setText(""+j1.getTemps());
-                Time2.setText(""+j2.getTemps());
+                Time1.setText(""+(int)j1.getTemps());
+                Time2.setText(""+(int)j2.getTemps());
             }
-        },  (long) 0.1, (long) 1.1);
+        },  (long) 0.1, speed);
     }
 
     /**
@@ -150,11 +177,18 @@ public class BrasDeFer extends javax.swing.JFrame {
         switch(evt.getKeyChar())
       {
           case 'x':
-              brasdefer.setValue(brasdefer.getValue()+power);
+              if ("master".equals(j1.getNom()))
+              {
+                brasdefer.setValue(brasdefer.getValue() + 2);
+              }
+              else
+              {
+                brasdefer.setValue(brasdefer.getValue() + power);
+              }
               break;
               
           case 'm':
-               brasdefer.setValue(brasdefer.getValue()-power);
+               brasdefer.setValue(brasdefer.getValue() - power);
               break;
       }
     }//GEN-LAST:event_formKeyTyped
@@ -191,6 +225,7 @@ public class BrasDeFer extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new BrasDeFer().setVisible(true);
+                
             }
         });
     }

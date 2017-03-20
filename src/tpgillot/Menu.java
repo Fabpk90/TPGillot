@@ -29,6 +29,7 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         Name1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -37,6 +38,9 @@ public class Menu extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        btFast = new javax.swing.JRadioButton();
+        btClassic = new javax.swing.JRadioButton();
+        btLong = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,16 +62,32 @@ public class Menu extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("Bras de fer");
 
+        buttonGroup1.add(btFast);
+        btFast.setText("Rapide");
+
+        buttonGroup1.add(btClassic);
+        btClassic.setSelected(true);
+        btClassic.setText("Normal");
+
+        buttonGroup1.add(btLong);
+        btLong.setText("Long");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btLong)
+                .addGap(36, 36, 36))
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabel3)
+                    .addComponent(btFast))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(Name1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -78,31 +98,40 @@ public class Menu extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Name2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel2)))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(BtnPlay)
-                            .addComponent(jLabel5))
+                            .addComponent(btClassic)
+                            .addComponent(BtnPlay))
                         .addGap(51, 51, 51)))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(71, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(98, 98, 98)
+                .addComponent(jLabel5)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5)
-                .addGap(21, 21, 21)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
-                .addGap(44, 44, 44)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Name1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Name2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
-                .addGap(48, 48, 48)
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btFast)
+                    .addComponent(btClassic)
+                    .addComponent(btLong))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(BtnPlay)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
 
         pack();
@@ -114,7 +143,7 @@ public class Menu extends javax.swing.JFrame {
         
        if(Name1.getText() != null && !Name1.getText().isEmpty())
        {
-           j1 = new Joueur(1000.0f, Name1.getText());
+           j1 = new Joueur(1000, Name1.getText());
        }
        else
        {
@@ -123,16 +152,30 @@ public class Menu extends javax.swing.JFrame {
        
        if(Name2.getText() != null && !Name2.getText().isEmpty())
        {
-           j2 = new Joueur(1000.0f, Name2.getText());
+           j2 = new Joueur(1000, Name2.getText());
        }
        else
        {
            JOptionPane.showConfirmDialog(this, "Nom du joueur 2 non valide", "Nom du joueur 2", JOptionPane.DEFAULT_OPTION );
        }
        
+       long speed = 1;
+       if (btClassic.isSelected())
+       {
+           speed = 20;
+       }
+       else if (btFast.isSelected())
+       {
+           speed = 10;
+       }
+       else
+       {
+           speed = 40;
+       }
+       
        if(j1 != null && j2 != null)
        {
-           BrasDeFer jeu = new BrasDeFer(j1, j2);
+           BrasDeFer jeu = new BrasDeFer(j1, j2, speed);
            jeu.show();
        }
     }//GEN-LAST:event_BtnPlayActionPerformed
@@ -176,6 +219,10 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton BtnPlay;
     private javax.swing.JTextField Name1;
     private javax.swing.JTextField Name2;
+    private javax.swing.JRadioButton btClassic;
+    private javax.swing.JRadioButton btFast;
+    private javax.swing.JRadioButton btLong;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

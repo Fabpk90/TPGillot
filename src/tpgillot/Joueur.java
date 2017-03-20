@@ -11,10 +11,10 @@ package tpgillot;
  */
 public class Joueur {
     
-    private float temps;
+    private int temps;
     private String nom;
     
-    public Joueur(float temps, String nom)
+    public Joueur(int temps, String nom)
     {
         this.temps = temps;
         this.nom = nom;
@@ -30,7 +30,7 @@ public class Joueur {
         return nom;
     }
     
-    public void setTemps(float temps)
+    public void setTemps(int temps)
     {
         this.temps = temps;
     }
@@ -38,5 +38,15 @@ public class Joueur {
     public float getTemps()
     {
         return temps;
+    }
+    
+    public void loseTime(float amount)
+    {
+        temps -= amount;
+    }
+    
+    public boolean isDead()
+    {
+        return getTemps() <= 0 ? true : false;
     }
 }
