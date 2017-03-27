@@ -41,8 +41,14 @@ public class Menu extends javax.swing.JFrame {
         btFast = new javax.swing.JRadioButton();
         btClassic = new javax.swing.JRadioButton();
         btLong = new javax.swing.JRadioButton();
+        jLabel6 = new javax.swing.JLabel();
+        ToucheJ1 = new javax.swing.JTextField();
+        ToucheJ2 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setText("Joueur1");
 
@@ -72,41 +78,71 @@ public class Menu extends javax.swing.JFrame {
         buttonGroup1.add(btLong);
         btLong.setText("Long");
 
+        jLabel6.setText("Type de partie");
+
+        ToucheJ1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        ToucheJ1.setText("x");
+
+        ToucheJ2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        ToucheJ2.setText("m");
+
+        jLabel7.setText("Touche J1");
+
+        jLabel8.setText("Touche J2");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btLong)
-                .addGap(36, 36, 36))
             .addGroup(layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addComponent(btFast))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addComponent(jLabel5))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(Name1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Name2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel2)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btClassic)
-                            .addComponent(BtnPlay))
-                        .addGap(51, 51, 51)))
-                .addContainerGap(71, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(98, 98, 98)
-                .addComponent(jLabel5)
+                                .addGap(13, 13, 13)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(btFast)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(ToucheJ1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(159, 159, 159)
+                                .addComponent(btLong)
+                                .addGap(15, 15, 15))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel1)
+                                            .addComponent(Name1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel4)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(Name2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jLabel2)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel6)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(btClassic)
+                                                .addComponent(BtnPlay)))
+                                        .addGap(40, 40, 40)))
+                                .addGap(1, 1, 1)
+                                .addComponent(ToucheJ2)
+                                .addGap(23, 23, 23))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel7)
+                        .addGap(164, 164, 164)
+                        .addComponent(jLabel8)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -124,13 +160,22 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(Name2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
-                .addGap(31, 31, 31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btFast)
                     .addComponent(btClassic)
                     .addComponent(btLong))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addComponent(BtnPlay)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtnPlay)
+                    .addComponent(ToucheJ1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ToucheJ2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21))
         );
 
@@ -141,43 +186,60 @@ public class Menu extends javax.swing.JFrame {
        
         Joueur j1 = null, j2 = null;
         
-       if(Name1.getText() != null && !Name1.getText().isEmpty())
+       if(ToucheJ1.getText().equals(ToucheJ2.getText()))
        {
-           j1 = new Joueur(1000, Name1.getText());
+           JOptionPane.showConfirmDialog(this, "N'utilisez qu'une touche pour chaque joueur", "Configuration des touches", JOptionPane.DEFAULT_OPTION );
        }
-       else
+       else if(ToucheJ1.getText().length() == 1 && ToucheJ2.getText().length() == 1)
        {
-           JOptionPane.showConfirmDialog(this, "Nom du joueur 1 non valide", "Nom du joueur 1", JOptionPane.DEFAULT_OPTION );
+            if(Name1.getText() != null && !Name1.getText().isEmpty())
+            {
+                j1 = new Joueur(1000, Name1.getText());
+            }
+            else
+            {
+                JOptionPane.showConfirmDialog(this, "Nom du joueur 1 non valide", "Nom du joueur 1", JOptionPane.DEFAULT_OPTION );
+            }
+
+            if(Name2.getText() != null && !Name2.getText().isEmpty())
+            {
+                j2 = new Joueur(1000, Name2.getText());
+            }
+            else
+            {
+                JOptionPane.showConfirmDialog(this, "Nom du joueur 2 non valide", "Nom du joueur 2", JOptionPane.DEFAULT_OPTION );
+            }
+
+            long speed = 1;
+            if (btClassic.isSelected())
+            {
+                speed = 20;
+            }
+            else if (btFast.isSelected())
+            {
+                speed = 10;
+            }
+            else
+            {
+                speed = 40;
+            }
+
+            if(j1 != null && j2 != null)
+            {
+                BrasDeFer jeu = new BrasDeFer(j1, j2, speed, ToucheJ1.getText().charAt(0), ToucheJ2.getText().charAt(0));
+                jeu.show();
+            }
        }
        
-       if(Name2.getText() != null && !Name2.getText().isEmpty())
+       else if(ToucheJ1.getText().length() > 1 || ToucheJ2.getText().length() > 1)
        {
-           j2 = new Joueur(1000, Name2.getText());
+           JOptionPane.showConfirmDialog(this, "N'utilisez qu'une touche pour chaque joueur", "Configuration des touches", JOptionPane.DEFAULT_OPTION );
        }
-       else
+       else      
        {
-           JOptionPane.showConfirmDialog(this, "Nom du joueur 2 non valide", "Nom du joueur 2", JOptionPane.DEFAULT_OPTION );
-       }
-       
-       long speed = 1;
-       if (btClassic.isSelected())
-       {
-           speed = 20;
-       }
-       else if (btFast.isSelected())
-       {
-           speed = 10;
-       }
-       else
-       {
-           speed = 40;
+           JOptionPane.showConfirmDialog(this, "Les touches pour jouer ne sont pas corrects", "Configuration des touches", JOptionPane.DEFAULT_OPTION );
        }
        
-       if(j1 != null && j2 != null)
-       {
-           BrasDeFer jeu = new BrasDeFer(j1, j2, speed);
-           jeu.show();
-       }
     }//GEN-LAST:event_BtnPlayActionPerformed
 
     /**
@@ -219,6 +281,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton BtnPlay;
     private javax.swing.JTextField Name1;
     private javax.swing.JTextField Name2;
+    private javax.swing.JTextField ToucheJ1;
+    private javax.swing.JTextField ToucheJ2;
     private javax.swing.JRadioButton btClassic;
     private javax.swing.JRadioButton btFast;
     private javax.swing.JRadioButton btLong;
@@ -228,5 +292,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     // End of variables declaration//GEN-END:variables
 }

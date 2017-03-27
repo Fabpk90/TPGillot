@@ -47,6 +47,6 @@ public class Joueur {
     
     public boolean isDead()
     {
-        return getTemps() <= 0 ? true : false;
+        return getTemps() <= 0;
     }
 }
